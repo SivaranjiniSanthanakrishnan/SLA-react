@@ -1,25 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import Counter from './CounterComponent';
+import React from 'react';
+import ControlledForm from './ControlledForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state={
+      show: true
+    }
+  }
+  toggleComponent = () => {
+    this.setState({show: !this.state.show})
+  }
+  render() {
+    return (
+      <div className="App">
+        <button onClick={this.toggleComponent}>Show/Hide</button>
+        {this.state.show ? <Counter initialValue={5}/> : <> </>} 
+        <br />
+        <ControlledForm />
+      </div>
+    );
+  }
 }
 
 export default App;
